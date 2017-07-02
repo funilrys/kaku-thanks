@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd Obstructing-Trio && python setup.py install && rm -R build
+cd ../Fasternix-Stratalorn && python setup.py install && rm -R build
