@@ -42,6 +42,9 @@ def thanks(username, output=''):
     indexes = to_add['index']
     list_of_files = to_add['files']
 
+    if output != '' and not output.endswith('/'):
+        output += '/'
+
     for i in range(len(list_of_files)):
         thanks[indexes[i]] = convert_JSON_to_dict(
             read_file(list_of_files[i]))[indexes[i]]
@@ -62,6 +65,7 @@ parser.add_argument("-o", "--output", type=str,
 
 args = parser.parse_args()
 transifex_username = args.username
+
 if args.output:
     thanks(transifex_username, args.output)
 else:
