@@ -53,7 +53,7 @@ def thanks(output=''):
 parser = argparse.ArgumentParser(
     description="Generate the famous \033[1m\033[96mthanks.json\033[0m of \033[1m\033[33mKaku\033[0m. \
     More informations about Kaku at \033[1m\033[33mhttps://github.com/EragonJ/Kaku\033[0m",
-    epilog="Crafted with \033[31m♥\033[0m by \033[1mFunilrys\033[0m")
+    epilog="Crafted with \033[31m♥\033[0m by \033[1mNissar Chababy (Funilrys)\033[0m")
 parser.add_argument(
     "-o", "--output", help="Define where \033[1m\033[96mthanks.json\033[0m is gonna be located", type=str)
 args = parser.parse_args()
