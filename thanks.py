@@ -29,14 +29,14 @@ def get_list_file_to_add():
     return results
 
 
-def thanks(output=''):
+def thanks(username, output=''):
     """Get contributors, translators and append index which are under add_it"""
 
     thanks = {}
 
     thanks['contributors'] = contributors('EragonJ/Kaku', return_list=True)
     thanks['translators'] = translators(
-        'funilrys', 'desktop-app', return_list=True)
+        username, 'desktop-app', return_list=True)
 
     to_add = get_list_file_to_add()
     indexes = to_add['index']
@@ -53,11 +53,16 @@ def thanks(output=''):
 parser = argparse.ArgumentParser(
     description="Generate the famous \033[1m\033[96mthanks.json\033[0m of \033[1m\033[33mKaku\033[0m. \
     More informations about Kaku at \033[1m\033[33mhttps://github.com/EragonJ/Kaku\033[0m",
-    epilog="Crafted with \033[31m♥\033[0m by \033[1mNissar Chababy (Funilrys)\033[0m")
-parser.add_argument(
-    "-o", "--output", help="Define where \033[1m\033[96mthanks.json\033[0m is gonna be located", type=str)
+    epilog="Crafted with \033[1m\033[31m♥\033[0m by \033[1mNissar Chababy (Funilrys)\033[0m")
+
+parser.add_argument("username", type=str,
+                    help="Transifex username. \033[1m\033[31mMust be a maintainer of Kaku's Transifex project\033[0m")
+parser.add_argument("-o", "--output", type=str,
+                    help="Define where \033[1m\033[96mthanks.json\033[0m is gonna be saved")
+
 args = parser.parse_args()
+transifex_username = args.username
 if args.output:
-    thanks(args.output)
+    thanks(transifex_username, args.output)
 else:
-    thanks()
+    thanks(transifex_username)
