@@ -1,3 +1,6 @@
 [submodule "Obstructing-Trio"]
 	path = Obstructing-Trio
 	url = https://github.com/funilrys/Obstructing-Trio
+[submodule "Fasternix-Stratalorn"]
+	path = Fasternix-Stratalorn
+	url = https://github.com/funilrys/Fasternix-Stratalorn
