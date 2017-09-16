@@ -35,9 +35,13 @@ def remove_author_username(list_of_contributors):
     """
 
     authors_username = 'EragonJ'
+    authors_username_transifex = 'eragonj'
 
-    while authors_username in list_of_contributors:
+    if authors_username in list_of_contributors:
         list_of_contributors.remove(authors_username)
+
+    if authors_username_transifex in list_of_contributors:
+        list_of_contributors.remove(authors_username_transifex)
 
     return list_of_contributors
 
@@ -65,10 +69,11 @@ def thanks(username, output=''):
         data = convert_JSON_to_dict(
             read_file(list_of_files[i]))[indexes[i]]
 
-        if indexes[i] == 'contributors':
+        if indexes[i] == 'contributors' or indexes[i] == 'translators':
             for element in data:
                 if element not in thanks[indexes[i]]:
                     thanks[indexes[i]].extend([element])
+                    
             thanks[indexes[i]] = format_list(remove_author_username(thanks[indexes[i]]))
 
             save_dict_to_JSON({indexes[i]:thanks[indexes[i]]}, list_of_files[i])
