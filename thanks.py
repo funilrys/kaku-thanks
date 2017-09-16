@@ -3,7 +3,7 @@ import argparse
 from os import listdir
 
 from fasternix_stratalorn import get as translators
-from fasternix_stratalorn.helpers import (convert_JSON_to_dict, read_file,
+from fasternix_stratalorn.helpers import (convert_JSON_to_dict, format_list, read_file,
                                           save_dict_to_JSON)
 from obstructing_trio import get as contributors
 
@@ -28,12 +28,28 @@ def get_list_file_to_add():
 
     return results
 
+def remove_author_username(list_of_contributors):
+    """Remove the username of the author from the list of contributors
+
+    :param list_of_contributors: A list, the list of contributors
+    """
+
+    authors_username = 'EragonJ'
+
+    while authors_username in list_of_contributors:
+        list_of_contributors.remove(authors_username)
+
+    return list_of_contributors
+
 
 def thanks(username, output=''):
-    """Get contributors, translators and append index which are under add_it"""
+    """Get contributors, translators and append index which are under add_it
+
+    :param username: A string, the Transifex username of a maintainer of the project
+    :param output:  A string, the destination of the thanks.json
+    """
 
     thanks = {}
-
     thanks['contributors'] = contributors('EragonJ/Kaku', return_list=True)
     thanks['translators'] = translators(
         username, 'desktop-app', return_list=True)
@@ -46,8 +62,18 @@ def thanks(username, output=''):
         output += '/'
 
     for i in range(len(list_of_files)):
-        thanks[indexes[i]] = convert_JSON_to_dict(
+        data = convert_JSON_to_dict(
             read_file(list_of_files[i]))[indexes[i]]
+
+        if indexes[i] == 'contributors':
+            for element in data:
+                if element not in thanks[indexes[i]]:
+                    thanks[indexes[i]].extend([element])
+            thanks[indexes[i]] = format_list(remove_author_username(thanks[indexes[i]]))
+
+            save_dict_to_JSON({indexes[i]:thanks[indexes[i]]}, list_of_files[i])
+        else:
+            thanks[indexes[i]] = data
 
     save_dict_to_JSON(thanks, output + 'thanks.json')
     return
