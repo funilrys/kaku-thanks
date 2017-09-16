@@ -73,7 +73,7 @@ def thanks(username, output=''):
             for element in data:
                 if element not in thanks[indexes[i]]:
                     thanks[indexes[i]].extend([element])
-                    
+
             thanks[indexes[i]] = format_list(remove_author_username(thanks[indexes[i]]))
 
             save_dict_to_JSON({indexes[i]:thanks[indexes[i]]}, list_of_files[i])
@@ -81,6 +81,8 @@ def thanks(username, output=''):
             thanks[indexes[i]] = data
 
     save_dict_to_JSON(thanks, output + 'thanks.json')
+
+    print('Your thanks.json have been successfully generated !!')
     return
 
 
@@ -89,13 +91,11 @@ parser = argparse.ArgumentParser(
     More informations about Kaku at \033[1m\033[33mhttps://github.com/EragonJ/Kaku\033[0m",
     epilog="Crafted with \033[1m\033[31m♥\033[0m by \033[1mNissar Chababy (Funilrys)\033[0m")
 
-parser.add_argument("username", type=str,
-                    help="Transifex username. \033[1m\033[31mMust be a maintainer of Kaku's Transifex project\033[0m")
 parser.add_argument("-o", "--output", type=str,
                     help="Define where \033[1m\033[96mthanks.json\033[0m is gonna be saved")
 
 args = parser.parse_args()
-transifex_username = args.username
+transifex_username = input('Transifex username: ')
 
 if args.output:
     thanks(transifex_username, args.output)
