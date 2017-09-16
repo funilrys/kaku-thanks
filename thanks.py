@@ -11,7 +11,7 @@ from obstructing_trio import get as contributors
 def get_list_file_to_add():
     """Get the list of file and index to append to thanks.json"""
 
-    DIRECTORY_TO_CHECK = './add_it'
+    DIRECTORY_TO_CHECK = './node_modules/kaku-thanks/add_it'
 
     results = {}
     results['files'] = listdir(DIRECTORY_TO_CHECK)
