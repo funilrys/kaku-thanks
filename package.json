@@ -1,0 +1,29 @@
+{
+    "name": "kaku-thanks",
+    "description": "Generate the famous thanks.json of Kaku",
+    "version": "1.1.0",
+    "keywords": [
+        "thanks",
+        "contributors",
+        "author",
+        "others",
+        "translators"
+    ],
+    "author": [{
+        "name": "Nissar Chababy",
+        "email": "funilrys@outlook.com",
+        "web": ""
+    }],
+    "bugs": {
+        "web": "https://github.com/funilrys/kaku-thanks/issues"
+    },
+    "repositories": [{
+        "type": "git",
+        "url": "git://github.com/funilrys/kaku-thanks.git"
+    }],
+    "licenses": [{
+        "name": "MIT",
+        "url": "https://raw.githubusercontent.com/funilrys/kaku-thanks/master/LICENSE"
+    }],
+    "homepage": "http://kaku.rocks/"
+}
