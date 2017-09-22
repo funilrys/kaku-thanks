@@ -1,4 +1,5 @@
 #!/bin/bash
 
-cd Obstructing-Trio && python setup.py install && rm -R build
-cd ../Fasternix-Stratalorn && python setup.py install && rm -R build
+cd ./node_modules/kaku-thanks/Obstructing-Trio && python setup.py install && rm -R build
+cd ./node_modules/kaku-thanks/Fasternix-Stratalorn && python setup.py install && rm -R build
+cd ./
